@@ -1,0 +1,58 @@
+﻿@model Trabalho_Login_Encriptado.Models.UsuarioModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container" width="160px">
+        <div class="wrapper">
+            <div class="form-signin">
+                <form method="post" action="@Url.Action("Verificar", "Login")">
+                    <h3 class="form-signin-heading">Bem Vindo!!</h3>
+                    <hr class="colorgraph" />
+                    <br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br /><br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    @{ if (TempData["Error"] != null)
+                        {
+                            var erro = TempData["Error"].ToString();
+                            <p class="text-center text-xs text-danger">@erro</p>
+                        }
+                    }
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Acessar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
